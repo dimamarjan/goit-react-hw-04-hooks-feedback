@@ -1,20 +1,16 @@
-import React, { Component } from 'react'
 import {StatList, StatListItem} from './Statistics.style'
 
-
-export class Statistics extends Component {
-
-    render() {
-        return (
-            <StatList>
-                <StatListItem>Good: {this.props.good}</StatListItem>
-                <StatListItem>Neutral: {this.props.neutral}</StatListItem>
-                <StatListItem>Bad: {this.props.bad}</StatListItem>
-                <StatListItem>Total: {this.props.total}</StatListItem>
-                <StatListItem>Positive feedbacks: {this.props.positivePercentage}%</StatListItem>
-            </StatList>
-        )
-    };
+export function Statistics({ feedBackState, positiveFeedbackPerc }) {
+    const [ goodFeedback, neutralFeedback, badFeedback ] =  feedBackState;
+    return (
+        <StatList>
+            <StatListItem>Good: {goodFeedback}</StatListItem>
+            <StatListItem>Neutral: {neutralFeedback}</StatListItem>
+            <StatListItem>Bad: {badFeedback}</StatListItem>
+            <StatListItem>Total: {goodFeedback + neutralFeedback + badFeedback}</StatListItem>
+            <StatListItem>Positive feedbacks: {positiveFeedbackPerc(goodFeedback, neutralFeedback, badFeedback)}%</StatListItem>
+        </StatList>
+    );
 }
 
 
